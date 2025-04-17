@@ -44,8 +44,6 @@ This version is meant to serve as a **read-only, static showcase**. It allows us
 - Grid-based responsive image layout
 - Insight into how the drone stabilizes and adapts
 
-> Perfect for portfolio demos, educational presentations, or tech showcases.
-
 ---
 
 ## 
