@@ -1,5 +1,0 @@
-name = "ai-drone-web-interface"
-compatibility_date = "2025-04-17"
-
-[site]
-bucket = "./"
