@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Drone Auto-Navigation System</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="bg-dark text-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <span class="drone-icon">🛸</span> Drone Simulation
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#overview">Overview</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#simulation-results">Simulation Results</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#wind-scenarios">Wind Scenarios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#pid-tuning">PID Tuning</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-primary text-white text-center py-5 mb-4">
+        <div class="container">
+            <h1 class="display-4">AI Drone Auto-Navigation System</h1>
+            <p class="lead">Advanced simulation of autonomous drone navigation in wind-disturbed environments</p>
+        </div>
+    </header>
+
+    <div class="container my-5">
+        <!-- Overview Section -->
+        <section id="overview" class="mb-5">
+            <h2 class="mb-4">Project Overview</h2>
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p>This simulation demonstrates the capabilities of an autonomous drone navigation system that
+                        operates without GPS reliance. Using sensor fusion techniques and advanced PID control
+                        algorithms, the drone can maintain stable flight even in challenging wind conditions.</p>
+                    <h3 class="h5 mt-4">Key Features:</h3>
+                    <ul>
+                        <li>Kalman filtering for state estimation</li>
+                        <li>Finite State Machine (FSM) for behavior control</li>
+                        <li>Realistic sensor simulation with appropriate noise profiles</li>
+                        <li>Advanced PID controller with wind compensation</li>
+                        <li>Comprehensive visualization of drone behavior</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <div class="card bg-dark">
+                        <img src="assets/plots/drone_plot_0.png" class="card-img-top" alt="3D Drone Flight Path">
+                        <div class="card-body">
+                            <h5 class="card-title">3D Flight Trajectory</h5>
+                            <p class="card-text">Visualizing the drone's flight path in three-dimensional space, showing
+                                estimated position versus actual position.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Simulation Results Section -->
+        <section id="simulation-results" class="mb-5">
+            <h2 class="mb-4">Simulation Results</h2>
+            <div class="row">
+                <div class="col-md-12 mb-4">
+                    <ul class="nav nav-tabs" id="resultsTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="position-tab" data-bs-toggle="tab"
+                                data-bs-target="#position" type="button" role="tab">Position Tracking</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pid-tab" data-bs-toggle="tab" data-bs-target="#pid-control"
+                                type="button" role="tab">PID Control</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="sensors-tab" data-bs-toggle="tab" data-bs-target="#sensors"
+                                type="button" role="tab">Sensor Data</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="environment-tab" data-bs-toggle="tab"
+                                data-bs-target="#environment" type="button" role="tab">Environmental Forces</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content bg-dark p-3 border border-secondary border-top-0" id="resultsTabContent">
+                        <div class="tab-pane fade show active" id="position" role="tabpanel">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <img src="assets/plots/drone_plot_5.png" class="img-fluid" alt="Position Tracking">
+                                </div>
+                                <div class="col-md-4">
+                                    <h3 class="h5">Position Tracking</h3>
+                                    <p>This plot shows how well the drone follows target positions along X, Y, and Z
+                                        axes. The blue line represents actual position, while the red dashed line shows
+                                        the target position.</p>
+                                    <p>Note how the drone maintains stable flight despite environmental disturbances.
+                                        The Z-axis (altitude) shows the most significant challenges in maintaining the
+                                        target due to wind effects.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="pid-control" role="tabpanel">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <img src="assets/plots/drone_plot_6.png" class="img-fluid"
+                                        alt="PID Control Signals">
+                                </div>
+                                <div class="col-md-4">
+                                    <h3 class="h5">PID Control Signals</h3>
+                                    <p>This visualization shows the control signals generated by the PID controller
+                                        during flight. The thrust, roll, pitch, and yaw rate signals demonstrate how the
+                                        controller adjusts to maintain stability.</p>
+                                    <p>Notice how the controller generates stronger corrections when facing wind
+                                        disturbances, particularly visible in the roll and pitch signals.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="sensors" role="tabpanel">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <img src="assets/plots/drone_plot_2.png" class="img-fluid" alt="Sensor Data">
+                                </div>
+                                <div class="col-md-4">
+                                    <h3 class="h5">Sensor Data</h3>
+                                    <p>This plot displays raw sensor readings from the drone's IMU (accelerometer,
+                                        gyroscope), magnetometer, and barometer.</p>
+                                    <p>The realistic noise patterns and drift demonstrate the challenges of state
+                                        estimation in real-world conditions.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="environment" role="tabpanel">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <img src="assets/plots/drone_plot_3.png" class="img-fluid"
+                                        alt="Environmental Forces">
+                                </div>
+                                <div class="col-md-4">
+                                    <h3 class="h5">Environmental Forces</h3>
+                                    <p>This visualization shows the environmental forces affecting the drone, primarily
+                                        wind forces and their direction over time.</p>
+                                    <p>Notice how wind gusts create sudden peaks in the force magnitude, challenging the
+                                        controller to maintain stability.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Wind Scenarios Section -->
+        <section id="wind-scenarios" class="mb-5">
+            <h2 class="mb-4">Wind Scenarios</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>The simulation includes several wind scenarios to test drone stability in different conditions.
+                        Each scenario presents unique challenges for the flight controller.</p>
+                    <div class="table-responsive">
+                        <table class="table table-dark">
+                            <thead>
+                                <tr>
+                                    <th>Scenario</th>
+                                    <th>Wind Speed</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Calm</td>
+                                    <td>0-1 m/s</td>
+                                    <td>Almost no wind, ideal flying conditions</td>
+                                </tr>
+                                <tr>
+                                    <td>Light</td>
+                                    <td>1-3 m/s</td>
+                                    <td>Light breeze with minimal impact on flight</td>
+                                </tr>
+                                <tr>
+                                    <td>Moderate</td>
+                                    <td>3-5 m/s</td>
+                                    <td>Moderate wind requiring active compensation</td>
+                                </tr>
+                                <tr>
+                                    <td>Strong</td>
+                                    <td>5-8 m/s</td>
+                                    <td>Strong wind creating significant drift</td>
+                                </tr>
+                                <tr>
+                                    <td>Stormy</td>
+                                    <td>8-12 m/s</td>
+                                    <td>Storm conditions with extreme turbulence</td>
+                                </tr>
+                                <tr>
+                                    <td>Gusty</td>
+                                    <td>Variable</td>
+                                    <td>Unpredictable gusts testing rapid adaptation</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card bg-dark mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">Wind Scenario Selection</h5>
+                        </div>
+                        <div class="card-body">
+                            <select id="windScenarioSelect" class="form-select bg-dark text-light mb-3">
+                                <option value="calm">Calm (0-1 m/s)</option>
+                                <option value="light">Light (1-3 m/s)</option>
+                                <option value="moderate" selected>Moderate (3-5 m/s)</option>
+                                <option value="strong">Strong (5-8 m/s)</option>
+                                <option value="stormy">Stormy (8-12 m/s)</option>
+                                <option value="gusty">Gusty (variable)</option>
+                            </select>
+                            <div id="windDescription" class="mb-3">
+                                <p>Moderate wind requiring active compensation from the PID controller. This scenario
+                                    demonstrates the effectiveness of wind compensation algorithms in maintaining flight
+                                    stability.</p>
+                            </div>
+                            <div class="text-center">
+                                <img id="windScenarioImg" src="assets/plots/drone_plot_moderate.png"
+                                    class="img-fluid rounded" alt="Wind Scenario Visualization">
+                                <div class="mt-2 text-muted small">Wind forces and their effect on drone trajectory
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PID Tuning Section -->
+        <section id="pid-tuning" class="mb-5">
+            <h2 class="mb-4">PID Controller & Wind Compensation</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <h3 class="h5 mb-3">Enhanced PID Controller</h3>
+                    <p>The drone uses several PID controllers to maintain stability:</p>
+                    <ul>
+                        <li><strong>Altitude Controller:</strong> Controls vertical movement and height</li>
+                        <li><strong>Position Controllers:</strong> Control X/Y movement in horizontal plane</li>
+                        <li><strong>Orientation Controllers:</strong> Manage roll, pitch, and yaw angles</li>
+                    </ul>
+                    <p>Our enhanced PID controller includes advanced wind compensation mechanisms:</p>
+                    <ol>
+                        <li><strong>Adaptive Scaling:</strong> Increases compensation proportionally to wind strength
+                        </li>
+                        <li><strong>Wind Integral Terms:</strong> Accumulate persistent wind effects for better
+                            compensation</li>
+                        <li><strong>Velocity Damping:</strong> Adds damping based on velocity to improve stability</li>
+                        <li><strong>Feedforward Compensation:</strong> Uses wind measurements to anticipate required
+                            corrections</li>
+                    </ol>
+                </div>
+                <div class="col-md-6">
+                    <div class="card bg-dark mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">PID Tuning Parameters</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label for="altitudePID" class="form-label">Altitude Control</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-text">Kp</span>
+                                        <input type="number" class="form-control bg-dark text-light" value="1.0"
+                                            disabled>
+                                        <span class="input-group-text">Ki</span>
+                                        <input type="number" class="form-control bg-dark text-light" value="0.1"
+                                            disabled>
+                                        <span class="input-group-text">Kd</span>
+                                        <input type="number" class="form-control bg-dark text-light" value="0.4"
+                                            disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label for="positionPID" class="form-label">Position Control</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-text">Kp</span>
+                                        <input type="number" class="form-control bg-dark text-light" value="0.25"
+                                            disabled>
+                                        <span class="input-group-text">Ki</span>
+                                        <input type="number" class="form-control bg-dark text-light" value="0.015"
+                                            disabled>
+                                        <span class="input-group-text">Kd</span>
+                                        <input type="number" class="form-control bg-dark text-light" value="0.07"
+                                            disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label for="orientationPID" class="form-label">Orientation Control</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-text">Kp</span>
+                                        <input type="number" class="form-control bg-dark text-light" value="0.6"
+                                            disabled>
+                                        <span class="input-group-text">Ki</span>
+                                        <input type="number" class="form-control bg-dark text-light" value="0.0"
+                                            disabled>
+                                        <span class="input-group-text">Kd</span>
+                                        <input type="number" class="form-control bg-dark text-light" value="0.1"
+                                            disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="alert alert-info">
+                                <i class="fa fa-info-circle"></i> These PID parameters are optimized for moderate wind
+                                conditions. In a real application, parameters would be adjusted based on flight
+                                conditions.
+                            </div>
+                            <div class="text-center">
+                                <img src="assets/plots/drone_plot_5.png"
+                                    class="img-fluid rounded border border-secondary" alt="PID Controller Performance">
+                                <div class="mt-2 text-muted small">PID controller performance in maintaining target
+                                    position</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="mb-5">
+            <h2 class="mb-4">About the Project</h2>
+            <div class="row">
+                <div class="col-md-8">
+                    <p>This simulation project demonstrates advanced drone control techniques in challenging
+                        environments. It was developed as a research project to explore autonomous navigation without
+                        reliance on GPS.</p>
+                    <h3 class="h5 mt-4">Technical Implementation:</h3>
+                    <ul>
+                        <li><strong>Advanced Control Theory:</strong> PID controllers with adaptive wind compensation
+                        </li>
+                        <li><strong>Sensor Fusion:</strong> Kalman filtering to estimate state from noisy sensor data
+                        </li>
+                        <li><strong>Decision Making:</strong> Finite State Machine for high-level behavior control</li>
+                        <li><strong>Environmental Modeling:</strong> Realistic wind dynamics with turbulence and gusts
+                        </li>
+                        <li><strong>Data Visualization:</strong> Comprehensive visualization of flight data and
+                            performance metrics</li>
+                    </ul>
+                    <h3 class="h5 mt-4">Future Directions:</h3>
+                    <ul>
+                        <li>Advanced PID tuning using Ziegler-Nichols or genetic algorithms</li>
+                        <li>Obstacle avoidance and path planning</li>
+                        <li>Battery simulation with intelligent landing</li>
+                        <li>Multi-drone swarm support</li>
+                        <li>Real-time dashboard with 3D visualization</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <div class="card bg-dark">
+                        <div class="card-body">
+                            <h5 class="card-title">Project Structure</h5>
+                            <p class="card-text">This project is organized into core components:</p>
+                            <ul class="list-unstyled">
+                                <li><code>core/</code> - Core drone logic and state management</li>
+                                <li><code>infrastructure/</code> - Sensor simulation and environment</li>
+                                <li><code>presentation/</code> - Visualization and logging</li>
+                            </ul>
+                            <h5 class="card-title mt-4">Implementation Languages</h5>
+                            <div class="d-flex gap-2 mb-3">
+                                <span class="badge bg-primary">Python</span>
+                                <span class="badge bg-primary">NumPy</span>
+                                <span class="badge bg-primary">Matplotlib</span>
+                            </div>
+                            <p class="card-text">See the <a href="https://github.com/yourusername/drone-simulation"
+                                    class="link-light">GitHub repository</a> for full source code and documentation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="bg-dark text-white py-4 mt-5 border-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>AI Drone Auto-Navigation System</h5>
+                    <p>A comprehensive simulation of autonomous drone navigation in wind-disturbed environments.</p>
+                </div>
+                <div class="col-md-6 text-end">
+                    <p>&copy; 2025 Drone Simulation Project</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="scripts.js"></script>
+</body>
+
+</html>
