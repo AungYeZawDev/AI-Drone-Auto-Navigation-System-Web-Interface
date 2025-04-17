@@ -11,6 +11,7 @@ Visualized with beautiful plots — all generated from simulation runs!
 Below are plots representing various aspects of the drone’s performance — position, velocity, orientation, error trends, control signals, and more.
 
 <div align="center">
+  <img src="images/screen-shot.png" width="60%"/>
   <img src="plots/drone_plot_0.png" width="32%" />
   <img src="plots/drone_plot_1.png" width="32%" />
   <img src="plots/drone_plot_2.png" width="32%" />
