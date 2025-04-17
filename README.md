@@ -11,16 +11,16 @@ Visualized with beautiful plots — all generated from simulation runs!
 Below are plots representing various aspects of the drone’s performance — position, velocity, orientation, error trends, control signals, and more.
 
 <div align="center">
-  <img src="images/screen-shot.png" width="60%"/>
-  <img src="plots/drone_plot_0.png" width="32%" />
-  <img src="plots/drone_plot_1.png" width="32%" />
-  <img src="plots/drone_plot_2.png" width="32%" />
+  <img src="assets/images/screen-shot.png" width="60%"/>
+  <img src="assets/plots/drone_plot_0.png" width="32%" />
+  <img src="assets/plots/drone_plot_1.png" width="32%" />
+  <img src="assets/plots/drone_plot_2.png" width="32%" />
   <br/>
-  <img src="plots/drone_plot_3.png" width="32%" />
-  <img src="plots/drone_plot_4.png" width="32%" />
-  <img src="plots/drone_plot_5.png" width="32%" />
+  <img src="assets/plots/drone_plot_3.png" width="32%" />
+  <img src="assets/plots/drone_plot_4.png" width="32%" />
+  <img src="assets/plots/drone_plot_5.png" width="32%" />
   <br/>
-  <img src="plots/drone_plot_6.png" width="32%" />
+  <img src="assets/plots/drone_plot_6.png" width="32%" />
 </div>
 
 ---
@@ -83,7 +83,7 @@ Made with ❤️ by [Aung Ye Zaw](https://www.linkedin.com/in/aungyezawdev)
 
 GitHub: [@AungYeZawDev](https://github.com/AungYeZawDev)  
 
-Project Page: [AI-Drone-Auto-Navigation-System](https://drone.thanlar.com)
+Project Page: [AI-Drone-Auto-Navigation-System-Web-Interface](https://drone.thanlar.com)
 Project Repo: [AI-Drone-Auto-Navigation-System](git@github.com:AungYeZawDev/AI-Drone-Auto-Navigation-System.git)
 
 ---
